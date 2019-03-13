@@ -16,23 +16,23 @@ public class Product
         this.productPrice = new SimpleDoubleProperty(price);
     }
 
-    public String getName()
+    public String getProductName()
     {
 
         return productName.get();
     }
 
-    public void setName(String name)
+    public void setProductName(String name)
     {
         productName.set(name);
     }
 
-    public Double getPrice()
+    public Double getProductPrice()
     {
         return productPrice.get();
     }
 
-    public void setPrice(double price)
+    public void setProductPrice(double price)
     {
         productPrice.set(price);
     }

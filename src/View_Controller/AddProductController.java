@@ -27,7 +27,7 @@ public class AddProductController implements Initializable
     @FXML private TableColumn<Product, String>  addProductNameColumn;
     @FXML private TableColumn<Product, String> addProductPriceColumn;
 
-    public final ObservableList<Product> data = FXCollections.observableArrayList(
+    private final ObservableList<Product> data = FXCollections.observableArrayList(
             new Product("video game", 60.00));
 
 
@@ -65,6 +65,8 @@ public class AddProductController implements Initializable
         addProductPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("productPrice"));
 
         addProductTableView.setItems(data);
+
+        System.out.println("Initializing of add product page done");
     }
 
 }
