@@ -1,30 +1,19 @@
 package Model;
 
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Product
 
 {
-    private SimpleIntegerProperty productId;
     private SimpleStringProperty productName;
     private SimpleDoubleProperty productPrice;
-    private SimpleIntegerProperty productStockQuantity;
-    private SimpleIntegerProperty minQuantiy;
-    private SimpleIntegerProperty maxQuantity;
 
-    public Product(String name, double price)
+    public Product(String name, Double price)
     {
 
         this.productName = new SimpleStringProperty(name);
         this.productPrice = new SimpleDoubleProperty(price);
-    }
-
-
-    public void setName(SimpleStringProperty name)
-    {
-        this.productName = name;
     }
 
     public String getName()
@@ -33,14 +22,19 @@ public class Product
         return productName.get();
     }
 
-    public void setPrice(SimpleDoubleProperty price)
+    public void setName(String name)
     {
-        this.productPrice = price;
+        productName.set(name);
     }
 
-    public double getPrice()
+    public Double getPrice()
     {
         return productPrice.get();
+    }
+
+    public void setPrice(double price)
+    {
+        productPrice.set(price);
     }
 
 
