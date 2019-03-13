@@ -27,8 +27,9 @@ public class AddProductController implements Initializable
     @FXML private TableColumn<Product, String>  addProductNameColumn;
     @FXML private TableColumn<Product, String> addProductPriceColumn;
 
+
     private final ObservableList<Product> data = FXCollections.observableArrayList(
-            new Product("video game", 60.00));
+            new Product());
 
 
     public void saveButtonClicked (ActionEvent actionEvent) throws IOException
