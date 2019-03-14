@@ -8,18 +8,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.AddPart">
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.AddPartController">
     <children>
         <Label layoutX="21.0" layoutY="14.0" prefHeight="53.0" prefWidth="97.0" text="Add Part">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <RadioButton layoutX="145.0" layoutY="32.0" mnemonicParsing="false" onAction="#inHouseCheckboxClicked" text="In-House">
+        <RadioButton fx:id="inhouseRadioButton" layoutX="145.0" layoutY="32.0" mnemonicParsing="false" onAction="#inHouseCheckboxClicked" text="In-House">
             <toggleGroup>
                 <ToggleGroup fx:id="addPartType" />
             </toggleGroup></RadioButton>
-        <RadioButton layoutX="236.0" layoutY="32.0" mnemonicParsing="false" onAction="#outsourcedCheckboxClicked" text="Outsourced" toggleGroup="$addPartType" />
+        <RadioButton fx:id="outsourcedRadioButton" layoutX="236.0" layoutY="32.0" mnemonicParsing="false" onAction="#outsourcedCheckboxClicked" text="Outsourced" toggleGroup="$addPartType" />
         <Label layoutX="64.0" layoutY="85.0" text="ID" />
         <Label layoutX="62.0" layoutY="124.0" text="Name" />
         <Label layoutX="62.0" layoutY="164.0" text="Inventory" />
@@ -31,20 +31,20 @@
                 <Font name="System Italic" size="12.0" />
             </font>
         </TextField>
-        <TextField layoutX="170.0" layoutY="120.0" promptText="Part Name">
+        <TextField fx:id="partName" layoutX="170.0" layoutY="120.0" promptText="Part Name">
             <font>
                 <Font name="System Italic" size="12.0" />
             </font>
         </TextField>
-        <TextField layoutX="170.0" layoutY="160.0" promptText="Inv" />
-        <TextField layoutX="170.0" layoutY="196.0" promptText="Price/Cost">
+        <TextField fx:id="partQuantity" layoutX="170.0" layoutY="160.0" promptText="Inv" />
+        <TextField fx:id="partPrice" layoutX="170.0" layoutY="196.0" promptText="Price/Cost">
             <font>
                 <Font name="System Italic" size="12.0" />
             </font>
         </TextField>
-        <TextField layoutX="170.0" layoutY="236.0" prefHeight="25.0" prefWidth="70.0" promptText="Max" />
+        <TextField fx:id="partMax" layoutX="170.0" layoutY="236.0" prefHeight="25.0" prefWidth="70.0" promptText="Max" />
         <TextField fx:id="companyNameTextField" layoutX="170.0" layoutY="276.0" promptText="Company Name" />
-        <TextField layoutX="300.0" layoutY="236.0" prefHeight="25.0" prefWidth="70.0" promptText="Min" />
+        <TextField fx:id="partMin" layoutX="300.0" layoutY="236.0" prefHeight="25.0" prefWidth="70.0" promptText="Min" />
         <Label layoutX="255.0" layoutY="240.0" text="Min" />
         <Button layoutX="220.0" layoutY="361.0" mnemonicParsing="false" onAction="#saveButtonClicked" prefHeight="17.0" prefWidth="70.0" text="Save" />
         <Button layoutX="307.0" layoutY="361.0" mnemonicParsing="false" onAction="#cancelButtonClicked" prefHeight="17.0" prefWidth="70.0" text="Cancel" />

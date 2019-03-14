@@ -1,19 +1,25 @@
 package View_Controller;
 
+import Model.Inventory;
+import Model.Part;
 import Model.Product;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MainScreenController {
+public class MainScreenController implements Initializable {
 
     @FXML
     private TextField partSearchTextfield;
@@ -29,13 +35,24 @@ public class MainScreenController {
     @FXML
     private TableColumn<Product, Double> productPriceColumn;
 
+
+
+    //Display Parts In Tableview/table cols
+    @FXML TableView<Part> partsMainTableView;
+    @FXML TableColumn<Part, Integer> partsMainPartIdColumn;
+    @FXML TableColumn<Part, String> partsMainPartNameColumn;
+    @FXML
+    TableColumn<Part, Integer> partsMainPartInventoryColumn;
+    @FXML TableColumn<Part, Double> partsMainPartPriceColumn;
+
+
     public void partSearchButtonClicked(ActionEvent actionEvent) {
         System.out.println("Button Pushed");
     }
 
     public void addPartButtonClicked(ActionEvent actionEvent) throws IOException
     {
-        Parent addPartButtonParent = FXMLLoader.load(getClass().getResource("AddPartController.fxml"));
+        Parent addPartButtonParent = FXMLLoader.load(getClass().getResource("AddPart.fxml")); // load the other page
 
         Scene addPartScene = new Scene(addPartButtonParent);
 
@@ -57,6 +74,17 @@ public class MainScreenController {
 
         window.setScene(modifyPartScene);
         window.show();
+    }
+
+    public void deletePartButtonClicked(ActionEvent actionEvent)
+    {
+        Part toDeletePart = partsMainTableView.getSelectionModel().getSelectedItem();
+
+        System.out.println(toDeletePart.getPartId());
+
+        Inventory.deletePart(toDeletePart);
+
+
     }
 
 
@@ -90,4 +118,25 @@ public class MainScreenController {
         System.exit(0);
     }
 
+    /*
+    @FXML TableView<Part> partsMainTableView;
+    @FXML TableColumn<Part, Integer> partsMainPartIdColumn;
+    @FXML TableColumn<Part, String> partsMainPartNameColumn;
+    @FXML TableColumn<Part, String> partsMainPartInventoryColumn;
+    @FXML TableColumn<Part, Double> partsMainPartPriceColumn;
+
+
+
+     */
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        partsMainPartIdColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("partId"));
+        partsMainPartNameColumn.setCellValueFactory(new PropertyValueFactory<Part, String>("partName"));
+        partsMainPartInventoryColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("quantityPart"));
+        partsMainPartPriceColumn.setCellValueFactory(new PropertyValueFactory<Part, Double>("partPrice"));
+        partsMainTableView.setItems(Inventory.getAllParts());
+    }
 }

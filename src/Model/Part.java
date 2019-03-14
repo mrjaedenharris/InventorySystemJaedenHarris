@@ -3,6 +3,7 @@ package Model;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import java.util.Random;
 
 public abstract class Part
 {
@@ -13,15 +14,36 @@ public abstract class Part
     protected SimpleIntegerProperty minimum;
     protected SimpleIntegerProperty maximum;
 
-    public int getPartId() {
+    protected Part()
+    {
+
+    }
+
+    protected Part(String partName, double partPrice, int quantityPart, int min, int max)
+    {
+        Random rand = new Random();
+
+        this.partId = new SimpleIntegerProperty(rand.nextInt(1000));
+        this.partName = new SimpleStringProperty(partName);
+        this.partPrice = new SimpleDoubleProperty(partPrice);
+        this.quantityPart = new SimpleIntegerProperty(quantityPart);
+        this.minimum = new SimpleIntegerProperty(min);
+        this.maximum = new SimpleIntegerProperty(max);
+    }
+
+
+    public int getPartId()
+    {
         return partId.get();
     }
 
-    public SimpleIntegerProperty partIdProperty() {
+    public SimpleIntegerProperty partIdProperty()
+    {
         return partId;
     }
 
-    public void setPartId(int partId) {
+    public void setPartId(int partId)
+    {
         this.partId.set(partId);
     }
 

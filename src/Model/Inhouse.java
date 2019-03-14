@@ -6,6 +6,20 @@ public class Inhouse extends Part
 {
     private SimpleIntegerProperty machineId;
 
+    public Inhouse()
+    {
+
+    }
+
+    public Inhouse (String partName, double partPrice, int partQuantity, int min, int max, int machineId)
+    {
+        super(partName, partPrice, partQuantity, min, max);
+
+        this.machineId = new SimpleIntegerProperty(machineId);
+
+
+    }
+
     public int getMachineId() {
         return machineId.get();
     }
