@@ -5,6 +5,8 @@ import Model.Outsourced;
 import Model.Part;
 import Model.Product;
 import Model.Inventory;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,6 +64,7 @@ public class AddPartController implements Initializable
 
     public void saveButtonClicked (ActionEvent actionEvent) throws IOException
     {
+
         String textPartName = partName.getText();
         int textPartQuantity = Integer.parseInt(partQuantity.getText());
         double textPartPrice = Double.parseDouble(partPrice.getText());
@@ -73,6 +76,16 @@ public class AddPartController implements Initializable
             int textMachineId = Integer.parseInt(machineIdTextField.getText());
 
             Part newPart = new Inhouse(textPartName, textPartPrice, textPartQuantity, textPartMin, textPartMax, textMachineId);
+
+            Inventory.addPart(newPart);
+
+        }
+
+        if (outsourcedRadioButton.isSelected())
+        {
+            String textCompanyName = companyNameTextField.getText();
+
+            Part newPart = new Outsourced(textPartName, textPartPrice, textPartQuantity, textPartMin, textPartMax, textCompanyName);
 
             Inventory.addPart(newPart);
 
@@ -105,9 +118,10 @@ public class AddPartController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        machineIdTextField.setVisible(false);
-        machineIdLabel.setVisible(false);
+        machineIdTextField.setVisible(true);
+        machineIdLabel.setVisible(true);
         companyNameLabel.setVisible(false);
         companyNameTextField.setVisible(false);
+        inhouseRadioButton.setSelected(true);
     }
 }

@@ -6,14 +6,16 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.Random;
+
 public class Product
 
 {
-    ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     private SimpleIntegerProperty productId;
     private SimpleStringProperty productName;
     private SimpleDoubleProperty productPrice;
-    private SimpleIntegerProperty quantityProduct;
+    private SimpleIntegerProperty productQuantity;
     private SimpleIntegerProperty minimum;
     private SimpleIntegerProperty maximum;
 
@@ -22,83 +24,121 @@ public class Product
     {
 
     }
-    //constructor
+
     public Product(String name, Double price, Integer quantity, Integer min, Integer max)
     {
+        Random rand = new Random();
 
+        int tempPartId;
+
+        //do while to verify we don't have this product ID already
+        tempPartId = rand.nextInt(1000);
+
+        this.associatedParts = FXCollections.observableArrayList();
+        this.productId = new SimpleIntegerProperty(tempPartId);
         this.productName = new SimpleStringProperty(name);
         this.productPrice = new SimpleDoubleProperty(price);
-        this.quantityProduct = new SimpleIntegerProperty(quantity);
+        this.productQuantity = new SimpleIntegerProperty(quantity);
         this.minimum = new SimpleIntegerProperty(min);
         this.maximum = new SimpleIntegerProperty(max);
     }
 
-    public String getProductName()
+    //constructor
+    public Product(ObservableList<Part> tempParts,String name, Double price, Integer quantity, Integer min, Integer max)
     {
+        Random rand = new Random();
 
+        int tempPartId;
+
+        //do while to verify we don't have this product ID already
+        tempPartId = rand.nextInt(1000);
+
+        this.associatedParts = tempParts;
+        this.productId = new SimpleIntegerProperty(tempPartId);
+        this.productName = new SimpleStringProperty(name);
+        this.productPrice = new SimpleDoubleProperty(price);
+        this.productQuantity = new SimpleIntegerProperty(quantity);
+        this.minimum = new SimpleIntegerProperty(min);
+        this.maximum = new SimpleIntegerProperty(max);
+    }
+
+    public ObservableList<Part> getAssociatedParts() {
+        return associatedParts;
+    }
+
+    public void setAssociatedParts(ObservableList<Part> associatedParts) {
+        this.associatedParts = associatedParts;
+    }
+
+    public int getProductId() {
+        return productId.get();
+    }
+
+    public SimpleIntegerProperty productIdProperty() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId.set(productId);
+    }
+
+    public String getProductName() {
         return productName.get();
     }
 
-    public void setProductName(String name)
-    {
-        productName.set(name);
+    public SimpleStringProperty productNameProperty() {
+        return productName;
     }
 
+    public void setProductName(String productName) {
+        this.productName.set(productName);
+    }
 
-
-    public Double getProductPrice()
-    {
+    public double getProductPrice() {
         return productPrice.get();
     }
 
-    public void setProductPrice(double price)
-    {
-        productPrice.set(price);
+    public SimpleDoubleProperty productPriceProperty() {
+        return productPrice;
     }
 
-
-
-    public Integer getQuantityProduct()
-    {
-        return quantityProduct.get();
+    public void setProductPrice(double productPrice) {
+        this.productPrice.set(productPrice);
     }
 
-    public void setQuantityProduct (int quantity)
-    {
-        quantityProduct.set(quantity);
+    public int getProductQuantity() {
+        return productQuantity.get();
     }
 
+    public SimpleIntegerProperty productQuantityProperty() {
+        return productQuantity;
+    }
 
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity.set(productQuantity);
+    }
 
-    public Integer getMinimum()
-    {
+    public int getMinimum() {
         return minimum.get();
     }
 
-    public void setMinimum (int min)
-    {
-        minimum.set(min);
+    public SimpleIntegerProperty minimumProperty() {
+        return minimum;
     }
 
+    public void setMinimum(int minimum) {
+        this.minimum.set(minimum);
+    }
 
-
-    public Integer getMaximum()
-    {
+    public int getMaximum() {
         return maximum.get();
     }
 
-    public void setMaximum(int max)
-    {
-        maximum.set(max);
+    public SimpleIntegerProperty maximumProperty() {
+        return maximum;
     }
 
-    public void addAssociatedPart (Part newPart)
-    {
-
+    public void setMaximum(int maximum) {
+        this.maximum.set(maximum);
     }
-
-
-
-
-
 }

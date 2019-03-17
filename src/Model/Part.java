@@ -7,12 +7,12 @@ import java.util.Random;
 
 public abstract class Part
 {
-    protected SimpleIntegerProperty partId;
-    protected SimpleStringProperty partName;
-    protected SimpleDoubleProperty partPrice;
-    protected SimpleIntegerProperty quantityPart;
-    protected SimpleIntegerProperty minimum;
-    protected SimpleIntegerProperty maximum;
+    private SimpleIntegerProperty partId;
+    private SimpleStringProperty partName;
+    private SimpleDoubleProperty partPrice;
+    private SimpleIntegerProperty quantityPart;
+    private SimpleIntegerProperty minimum;
+    private SimpleIntegerProperty maximum;
 
     protected Part()
     {
@@ -21,9 +21,21 @@ public abstract class Part
 
     protected Part(String partName, double partPrice, int quantityPart, int min, int max)
     {
-        Random rand = new Random();
 
-        this.partId = new SimpleIntegerProperty(rand.nextInt(1000));
+
+        Random rand = new Random();
+        int tempPartId;
+
+        do {
+            tempPartId = rand.nextInt(1000);
+
+            System.out.println("random integer selected: " + tempPartId);
+        }
+        while (Inventory.partIdExists(tempPartId));
+
+
+
+        this.partId = new SimpleIntegerProperty(tempPartId);
         this.partName = new SimpleStringProperty(partName);
         this.partPrice = new SimpleDoubleProperty(partPrice);
         this.quantityPart = new SimpleIntegerProperty(quantityPart);
@@ -42,7 +54,7 @@ public abstract class Part
         return partId;
     }
 
-    public void setPartId(int partId)
+    void setPartId(int partId)
     {
         this.partId.set(partId);
     }

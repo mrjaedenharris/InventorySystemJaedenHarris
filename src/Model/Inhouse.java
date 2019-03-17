@@ -16,8 +16,6 @@ public class Inhouse extends Part
         super(partName, partPrice, partQuantity, min, max);
 
         this.machineId = new SimpleIntegerProperty(machineId);
-
-
     }
 
     public int getMachineId() {
